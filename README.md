@@ -13,7 +13,7 @@ Before running the code you need to set up the following tools on your machine
 -	You should see the project in your workspace now. 
 -	Copy the folder chrome_driver(with two dirvers, one for Mac, one for windows) to root path of disk where your IDE located.    
     -e.g. for Windows, "E/Program Files/Eclipse", "E/chrome_dirver"; For Mac, move folder to root path of disk.
--	Modify the path_to_driver in WebPageTestMethod.java to :/chrome_dirver/chromedriver.exe
+-	Modify the path_to_driver in WebPageTestMethod.java to /chrome_dirver/chromedriver.exe (under Windows) and /chrome_dirver/chromedriver (under Mac)
 
 ### Run the project:
 -    Select the test class in com.walmart.testcase. There are 2 classes avaiable
