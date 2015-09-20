@@ -2,7 +2,7 @@
 Before running the code you need to set up the following tools on your machine
 - Java 8
 - Eclipse
-- Selenium (All the Selenium jar files have been included in the project under the jars package(no need to download again).
+- Selenium (All the Selenium jar files have been included in the project under the jars package, no need to download again).
 - TestNG (Install the TestNG eclipse plugin from http://testng.org/doc/download.html  )
 - WebDriver. The method of setting path is attached below
 
