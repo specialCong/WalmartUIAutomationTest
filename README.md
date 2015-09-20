@@ -17,8 +17,8 @@ Before running the code you need to set up the following tools on your machine
 
 ### Run the project:
 -    Select the test class in com.walmart.testcase. There are 2 classes avaiable
-    -NewTestPassForMac.java(Expect to pass all 5 test, only for Mac)
-    -NewTestPassForWindows.java(Expect to pass all 5 test, only for Windows)
+	-    NewTestPassForMac.java(Expect to pass all 5 test, only for Mac)
+	-    NewTestPassForWindows.java(Expect to pass all 5 test, only for Windows)
 -    Run as TestNG
  
 ### Problem Statement/Requirement: 
