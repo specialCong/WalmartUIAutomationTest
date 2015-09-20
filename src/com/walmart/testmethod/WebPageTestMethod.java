@@ -1,6 +1,5 @@
 package com.walmart.testmethod;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.*;
@@ -31,15 +30,13 @@ public class WebPageTestMethod {
 	
 	private final String ADD_TO_CART_BTN_XPATH = "//*[@id='WMItemAddToCartBtn']";
 	
-	
 	//xpath for remove cart item
 	private final String CART_ITEM_REMOVE_BTN_ID = "CartRemItemBtn";
 
 	//xpath for pop up window
-	private final String POP_UP_WINDOW = "id('spa-layout')/div/div/div/button";
+//	private final String POP_UP_WINDOW = "id('spa-layout')/div/div/div/button";
 	private final String CHECK_ORDER_BTN_XPATH = "/html/body/div[1]/section/section[4]/div/div/div/div/div[2]/div/div[2]/a";
-	private final String VIEW_CART_BTN = "//*[@id='PACViewCartBtn']";
-	
+
 	//xpath for search
 	private final String SEARCH_TEXT_BAR_XPATH = "id('top')/div[3]/div/div/div/div/div[3]/form/div/div[2]/span/input";
 	private final String SEARCH_BTN_XPATH = "id('top')/div[3]/div/div/div/div/div[3]/form/div/div[3]/button";
@@ -53,11 +50,13 @@ public class WebPageTestMethod {
 	private final String ITEM_LIST_XPATH = "//div[1]/section/section[4]/div/div/div[3]/div[1]/div[1]";
 	
 	private final String CLICK_ON_CART_XPATH = "//*[@id='top']/div[3]/div/div/div/div/div[4]/div/div[2]/div/a";
+	
 	//xpath for cart
-//	private final String XPATH_CART_PRESENT="//h3[contains(.,\"Your cart:\")]/span";
-//	private final String ITEM_ADDED_TO_CART_ITEM_ID_XPATH = "//a[@id=\"CartItemInfo\"]";
+	private final String VIEW_CART_BTN = "//*[@id='PACViewCartBtn']";
 	private final String CART_ITEM_INFO_XPATH = "//*[@id='spa-layout']/div/div/div[1]/div/div[4]/div[2]/div";
-//	private final String NUM_OF_ITEMS_IN_CART = "id('top')/div[3]/div/div/div/div/div[4]/div/div[2]/div/a/b";
+	private final String PRODUCT_CONTROL_XPATH = "/html/body/div[1]/section/section[4]/div/div[2]/div[1]/div[4]/div[2]/div/div[2]/div/div[2]";
+	
+//	private final String ITEM_ADDED_TO_CART_ITEM_ID_XPATH = "//a[@id=\"CartItemInfo\"]";
 	
 	// Timer to wait on elements to appear to be visible
 	public WebDriver _driver;
@@ -82,15 +81,26 @@ public class WebPageTestMethod {
 
 
 	/**
+	 * Click the sign in on right navigation
+	 * 
+	 */
+	public void clickSignInInNavigation() {
+		_wait.until(ExpectedConditions.visibilityOfElementLocated(By
+				.xpath(SIGN_IN_NAVG_XPATH)));
+		_elemHelper.getWebElementFromDriverAndClick(SIGN_IN_NAVG_XPATH);
+	}
+	
+	
+	/**
 	 * Sign in the user
 	 * 
 	 * @param accountId
 	 * @param password
 	 */
-	public void signIn(String username, String password) {
-
-		_elemHelper.getWebElementFromDriverAndClick(SIGN_IN_NAVG_XPATH);
-
+	public void enterSignInAccountAndPassword(String username, String password) {
+		_wait.until(ExpectedConditions.visibilityOfElementLocated(By
+				.id("login-username")));
+		
 		WebElement usernameTextField = _elemHelper
 				.waitAndgetWebElementById("login-username");
 		if (usernameTextField != null) {
@@ -108,6 +118,10 @@ public class WebPageTestMethod {
 	 * Click on the sign in button
 	 */
 	public void clickSignInBTN() {
+		_elemHelper.waitForLoad();
+		_wait.until(ExpectedConditions.visibilityOfElementLocated(By
+				.xpath(SIGN_IN_BTN_XPATH)));
+		
 		_elemHelper.getWebElementFromDriverAndClick(SIGN_IN_BTN_XPATH);
 		_log.log(Level.FINE, "Waiting for the sign in...");
 	}
@@ -116,11 +130,12 @@ public class WebPageTestMethod {
 	 * type keyword in search bar
 	 *
 	 */
-	public void searchText(String searchText) {
-		// SearchText
+	public void enterSearchText(String searchText) {
+		// SearchText 
+		_elemHelper.waitForLoad();
 		_wait.until(ExpectedConditions.visibilityOfElementLocated(By
 				.xpath(CHECK_ORDER_BTN_XPATH)));
-		_elemHelper.waitForLoad();
+
 		WebElement searchTextBar = _elemHelper
 				.waitAndgetWebElement(SEARCH_TEXT_BAR_XPATH);
 		if (searchTextBar != null) {
@@ -135,6 +150,7 @@ public class WebPageTestMethod {
 	 * Click on the search button
 	 */
 	public void clickSearchButton() {
+		_elemHelper.waitForLoad();
 		_elemHelper.getWebElementFromDriverAndClick(SEARCH_BTN_XPATH);
 		_log.log(Level.FINE, "Waiting for search results ... ");
 	}
@@ -145,7 +161,11 @@ public class WebPageTestMethod {
 	public void selectOneItemFromTheSearchList(String searchText) {
 		// until the refine bar has been present
 		_elemHelper.waitForLoad();
+
 		try {
+			/**
+			 * For special keys like "toys" it will handle a department selection
+			 */
 			By specialCase = By.xpath(ITEM_LIST_XPATH);
 			WebElement clickSeeItems = _driver.findElement(specialCase);
 			if (clickSeeItems != null) {
@@ -179,13 +199,14 @@ public class WebPageTestMethod {
 	}
 
 	/**
-	 * 
+	 * Save Item ID Before Add to Cart
 	 * @return
 	 */
 	public String saveItemProductDetailsBeforeAddCart() {
 		// Store the name of the item that we will add to cart in the
 		// variable "itemAddedToCart"
 		_elemHelper.waitForLoad();
+		
 		String itemInfoBeforeAddingToCart = "//div[@class='js-reviews see-all-reviews']";
 		WebElement webElement = _elemHelper
 				.waitAndgetWebElement(itemInfoBeforeAddingToCart);
@@ -205,12 +226,12 @@ public class WebPageTestMethod {
 	/**
 	 * Click on Add_to_cart button
 	 */
+	
 	public void clickAddToCart() {
 		// Wait for "Add_to_Cart" button to be visible
-		
 		_elemHelper.waitForLoad();
-		_wait.until(ExpectedConditions.elementToBeClickable(By
-				.xpath(ADD_TO_CART_BTN_XPATH)));
+		_wait.until(ExpectedConditions.visibilityOfElementLocated(By
+				.xpath(PRODUCT_CONTROL_XPATH)));
 		
 		WebElement addToCart = _elemHelper
 				.getWebElementFromDriver(ADD_TO_CART_BTN_XPATH);
@@ -229,9 +250,9 @@ public class WebPageTestMethod {
 		// Check the item in the chart and save the name in variable
 		// itemInCart
 		_elemHelper.waitForLoad();
-		
-		_wait.until(ExpectedConditions.elementToBeClickable(By
+		_wait.until(ExpectedConditions.visibilityOfElementLocated(By
 				.xpath(CART_ITEM_INFO_XPATH)));
+		
 		List<WebElement> cartDisplay = _driver.findElements(By
 				.xpath(CART_ITEM_INFO_XPATH));
 
@@ -252,87 +273,33 @@ public class WebPageTestMethod {
 	
 	public void validateItemsNumInCart(String itemIDAddedToCart) {
 		_elemHelper.waitForLoad();
-		
-		_wait.until(ExpectedConditions.elementToBeClickable(By
+		_wait.until(ExpectedConditions.visibilityOfElementLocated(By
 				.xpath(CART_ITEM_INFO_XPATH)));
+		
 		List<WebElement> cartDisplay = _driver.findElements(By
 				.xpath(CART_ITEM_INFO_XPATH));
 		Assert.assertTrue(cartDisplay != null && cartDisplay.size() == 1,
 				"Multiple items in cart!");
 	}
-	
-	/**
-	 * Handle all cases until signing into the account
-	 * 
-	 * @param searchText
-	 * @param accountId
-	 * @param password
-	 * @return
-	 */
-//	public String handleUntilLoginAndGetItemId(String searchText,
-//			String username, String password) {
-//
-//		// Sign in
-//		signIn(username, password);
-//		clickSignInBTN();
-//
-//		// Search Text and Click on Search button
-//		searchText(searchText);
-//		clickSearchButton();
-//
-//		// Store the product ID of the item added to the cart
-//		selectOneItemFromTheSearchList(searchText);
-//		String itemIDAddedToCart = saveItemProductDetailsBeforeAddCart();
-//		
-//		// Add to cart
-//		clickAddToCart();
-//
-//		//click view cart
-//		viewCart();
-//
-//		// validateItemInCart();
-//		// Product ID of the item added to cart
-//		return itemIDAddedToCart;
-//
-//	}
 
 	/**
-	 * For special keys like "toys" it will handle a department selection
+	 * click view cart button after click add to cart
 	 */
-	public void HandleDepartmentKeyword() {
-		try {
-			By specialCase = By.xpath(ITEM_LIST_XPATH);
-			WebElement clickSeeItems = _driver.findElement(specialCase);
-			if (clickSeeItems != null) {
-				WebElement urlToSeeItemsContent = _driver.findElement(By
-						.xpath(ITEMS_VIEW_URL));
-				if (urlToSeeItemsContent != null) {
-					urlToSeeItemsContent.click();
-				}
-			}
-		} catch (Exception ex) {
-		}
-
-	}
-
-	/**
-	 * Handle the pop up appears after adding item to cart
-	 */
-	public void viewCart() {
+	public void clickViewCart() {
+		_driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		_wait.until(ExpectedConditions.visibilityOfElementLocated(By
-				.xpath(POP_UP_WINDOW)));
-		_driver.findElement(By.xpath(VIEW_CART_BTN)).click();
+				.xpath(VIEW_CART_BTN)));
+		_elemHelper.getWebElementFromDriverAndClick(VIEW_CART_BTN);
 	}
 
 	/**
-	 * Click on cart
+	 * Click on cart on right navigation
 	 */
 	public void clickOnCart() {
 		_elemHelper.waitForLoad();
-		_driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
 		_wait.until(ExpectedConditions.visibilityOfElementLocated(By
 				.xpath(CHECK_ORDER_BTN_XPATH)));
+		
 		WebElement clickOnCart = _driver.findElement(By
 				.xpath(CLICK_ON_CART_XPATH));
 		_driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -355,16 +322,19 @@ public class WebPageTestMethod {
 
 	}
 	
+	/**
+	 * Remove all items in cart
+	 */
 	public void removeAllItemsIncart() {
 		_elemHelper.waitForLoad();
-		
-		_wait.until(ExpectedConditions.elementToBeClickable(By
+		_wait.until(ExpectedConditions.visibilityOfElementLocated(By
 				.xpath(CART_ITEM_INFO_XPATH)));
+		
 		List<WebElement> cartDisplay = _driver.findElements(By
 				.xpath(CART_ITEM_INFO_XPATH));
-		Iterator<WebElement> iterator = cartDisplay.iterator();
-		while(iterator.hasNext()) {
-			iterator.remove();
+		int size = cartDisplay.size();
+		while(cartDisplay != null && size != 0) {
+			size--;
 			removeItemFromCart();
 		}
 	}

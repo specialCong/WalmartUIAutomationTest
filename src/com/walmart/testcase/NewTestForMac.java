@@ -47,12 +47,12 @@ public class NewTestForMac {
 			throws InterruptedException {
 			// Search item, select, add to cart and save the product ID of the
 			// item
-			
-			method.signIn(LOGIN_USERNAME, LOGIN_PASSWORD);
+			method.clickSignInInNavigation();
+			method.enterSignInAccountAndPassword(LOGIN_USERNAME, LOGIN_PASSWORD);
 			method.clickSignInBTN();
 			
 			// Search Text and Click on Search button
-			method.searchText(searchText);
+			method.enterSearchText(searchText);
 			method.clickSearchButton();
 
 			// Store the product ID of the item added to the cart
@@ -63,11 +63,9 @@ public class NewTestForMac {
 			method.clickAddToCart();
 
 			//click view cart
-			method.viewCart();
+			method.clickViewCart();
 
-			// Get the Product ID of the item in the cart and assert against the
-			// itemIDAddedToCart
-			
+			// validate item		
 			method.validateItemsIdInCart(itemIDAddedToCart);
 			method.validateItemsNumInCart(itemIDAddedToCart);
 			
