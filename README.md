@@ -11,20 +11,21 @@ Before running the code you need to set up the following tools on your machine
 -	Select Root Directory and then Navigate to the unzipped project folder and make sure that the project shows up in the Projects section
 -	Click Finish
 -	You should see the project in your workspace now. 
--	Copy the folder chrome_driver(with two dirvers, one for Mac, one for windows) to root path of disk where your IDE located.
-    		e.g. for Windows, "E/Program Files/Eclipse", "E/chrome_dirver"
-    		e.g. for Mac, move folder to root path of disk.
+-	Copy the folder chrome_driver(with two dirvers, one for Mac, one for windows) to root path of disk where your IDE located.    
+-	    e.g. for Windows, "E/Program Files/Eclipse", "E/chrome_dirver"
+-	    e.g. for Mac, move folder to root path of disk.
 -	Modify the path_to_driver in WebPageTestMethod.java to :/chrome_dirver/chromedriver.exe
 
 ### Run the project:-
     Select the test class in com.walmart.testcase. There are 2 classes avaiable
-        NewTestPass.java(Expect to pass all 5 test)
+        NewTestPassForMac.java(Expect to pass all 5 test, only for Mac)
+        NewTestPassForWindows.java(Expect to pass all 5 test, only for Windows)
     Run as TestNG
  
 ### Problem Statement/Requirement: 
 The requirement for this project is to automate an end-to-end scenario for UI testing the e-commerce website http://www.walmart.com. 
 
-Scenarios to be tested:
+Scenarios to be automated:
     1. Login using existing account
     2. Perform a search on home page from a pool of key words given below
     3. Identify an item from the result set that you can add to cart
@@ -32,9 +33,9 @@ Scenarios to be tested:
     5. Validate that item added is present in the cart and is the only item in the cart
 
 Test Data:
-    Account / password: leotang.walmart.test@gmail.com / walmarttest
-    Search terms: tv, socks, dvd, toys, iPhone
-
+    kep pool: tv, socks, dvd, toys, iPhone
+    account / password: leotang.walmart.test@gmail.com / walmarttest
+    
 Assumptions:
     1. It start with 0 item in cart.
     2. All selected items are added in default conditions
