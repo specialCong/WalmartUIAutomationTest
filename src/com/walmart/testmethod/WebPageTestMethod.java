@@ -19,8 +19,9 @@ public class WebPageTestMethod {
 	private final Logger _log = Logger
 			.getLogger(WebPageTestMethod.class.getName());
 	
-	// path to driver
-	private final String PATH_TO_DRIVER = "/chrome_driver/chromedriver.exe";
+	/* modify PATH_TO_DRIVER right here */
+	private final String PATH_TO_DRIVER = "/chrome_driver/chromedriver.exe";//this is for Windows
+//	private final String PATH_TO_DRIVER = "/chrome_driver/chromedriver";	//this is for Mac
 
 	private final String HOMEPAGE_URL = "http://www.walmart.com";
 	private final String LOGOUT_URL = "https://www.walmart.com/account/logout";
