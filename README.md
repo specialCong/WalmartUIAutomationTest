@@ -13,7 +13,7 @@ Before running the code you need to set up the following tools on your machine
 -	You should see the project in your workspace now. 
 -	Copy the folder chrome_driver(with two dirvers, one for Mac, one for windows) to root path of disk where your IDE located.    
     -e.g. for Windows, "E/Program Files/Eclipse", "E/chrome_dirver"; For Mac, move folder to root path of disk.
--	Modify the path_to_driver in WebPageTestMethod.java to "/chrome_dirver/chromedriver.exe" (under Windows) and "/chrome_dirver/chromedriver" (under Mac)
+-	Modify the path_to_driver in WebPageTestMethod.java to :/chrome_dirver/chromedriver.exe
 
 ### Run the project:
 -    Select the test class in com.walmart.testcase. There are 2 classes avaiable
@@ -37,8 +37,9 @@ Test Data:
     
 Assumptions:
 -    1. It start with 0 item in cart.
--    2. All selected items are added in default conditions
--    3. User will remove items before sign out
+-    2. Search only happen after Sign in
+-    3. All selected items are added in default conditions
+-    4. User will remove items before sign out
 
 Test Flow :
 -    1. Open Web Browser
@@ -58,6 +59,10 @@ Test Flow :
 -    6. Test login by different paths e.g. by clicking on check-out or by creating New Account.
 -    7. Test on various browsers
 -    8. Run the test in parallel on different platform
+
+### Possible Dupicates and Bug:
+-    1. the driver may run before page laod completely
+-    2. duplicates element may in the same page
 
 ### Trade-offs
 -    1.	Simplify the Driver and webElement call
