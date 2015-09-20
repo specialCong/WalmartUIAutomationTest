@@ -6,7 +6,7 @@ Before running the code you need to set up the following tools on your machine
 - TestNG (Install the TestNG eclipse plugin from http://testng.org/doc/download.html  )
 - WebDriver. The method of setting path is attached below
 
-### How to Import and setup the project in eclipse?
+### Project Setup Instruction
 - Open Eclipse -> Import -> Existing Projects Into Workspace
 -	Select Root Directory and then Navigate to the unzipped project folder and make sure that the project shows up in the Projects section
 -	Click Finish
@@ -18,14 +18,14 @@ Before running the code you need to set up the following tools on your machine
 	-	for Windows "/chrome_dirver/chromedriver.exe"
 	-	for Mac "/chrome_dirver/chromedriver"
 
-### Run the project:
+### Running Configuration:
 -    Select the test class in com.walmart.testcase. There are 2 classes avaiable
 	-    NewTestPassForMac.java(Expect to pass all 5 test, only for Mac)
 	-    NewTestPassForWindows.java(Expect to pass all 5 test, only for Windows)
 -    Run as TestNG
  
-### Problem Statement/Requirement: 
-The requirement for this project is to automate an end-to-end scenario for UI testing the e-commerce website http://www.walmart.com. 
+### Assignment
+Automate an end-to-end user e-commerce transaction flow using any open source tool for www.walmart.com with an existing customer on Chrome or Safari browser.
 
 Scenarios to be automated:
 -    1. Login using existing account
