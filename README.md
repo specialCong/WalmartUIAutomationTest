@@ -1,21 +1,28 @@
 # UI Automation Tests for Walmart
 
-### Installation guide:
-Before running the code you need to set up the following tools and frameworks on your machine
+### Installation Requirement:
+Before running the code you need to set up the following tools on your machine
+- Java 8
+- Eclipse
+- Selenium (All the Selenium jar files have been included in the project under the jars package(no need to download again).
+- TestNG (Install the TestNG eclipse plugin from http://testng.org/doc/download.html  )
+- WebDriver. The method of setting path is attached below
 
-- Java 8 :- 
-    You can install and check for system requirements for Java 8 here                       https://www.java.com/en/download/help/index_installing.xml
+### How to Import and setup the project in eclipse?
+- Open Eclipse -> Import -> Existing Projects Into Workspace
+-	Select Root Directory and then Navigate to the unzipped project folder and make sure that the project shows up in the Projects section
+-	Click Finish
+-	You should see the project in your workspace now. 
+-	Copy the folder chrome_driver(with two dirvers, one for Mac, one for windows) to root path of disk where your IDE located.
+    		e.g. for Windows, "E/Program Files/Eclipse", "E/chrome_dirver"
+    		e.g. for Mac, move folder to root path of disk.
+-	Modify the path_to_driver in WebPageTestMethod.java to :/chrome_dirver/chromedriver.exe
 
-- Eclipse -: Latest Version preferred. You can install eclipse from here https://eclipse.org/downloads/
-
-- Selenium: (http://www.seleniumhq.org/download/ ) . All the Selenium jar files have been included in the project under the jars package(no need to download again).
-
-- TestNG :- Install the TestNG eclipse plugin from http://testng.org/doc/download.html  
-
-- Drivers:- You need to install different Drivers for different web browsers. For this project you need the Chrome driver to be installed, which can be downloaded from 
-https://sites.google.com/a/chromium.org/chromedriver/downloads .
-Make sure the path of the Chrome driver in the code is right. The method of setting path is attached below
-
+### Run the project:-
+    Select the test class in com.walmart.testcase. There are 2 classes avaiable
+        NewTestPass.java(Expect to pass all 5 test)
+    Run as TestNG
+ 
 ### Problem Statement/Requirement: 
 The requirement for this project is to automate an end-to-end scenario for UI testing the e-commerce website http://www.walmart.com. 
 
@@ -27,7 +34,6 @@ Scenarios to be tested:
     5. Validate that item added is present in the cart and is the only item in the cart
 
 Test Data:
-
     Account / password: leotang.walmart.test@gmail.com / walmarttest
     Search terms: tv, socks, dvd, toys, iPhone
 
@@ -35,27 +41,8 @@ Assumptions:
     1. It start with 0 item in cart.
     2. All selected items are added in default conditions
     3. User will remove items before sign out
-    4. The test platform is on Windows/Mac Chrome.
 
-
-### How to Import and setup the project in eclipse?
-- Open Eclipse -> Import -> Existing Projects Into Workspace
--	Select Root Directory and then Navigate to the unzipped project folder and make sure that the project shows up in the Projects section
--	Click Finish
--	You should see the project in your workspace now. 
--	Copy the folder chrome_driver(with two dirvers, one for Mac, one for windows) to root path of disk where your IDE located.
-    	e.g. for Windows, "E/Program Files/Eclipse", "E/chrome_dirver"
-    	e.g. for Mac, move folder to root path of disk.
--	Modify the path to driver in WebPageTestMethod.java to :/chrome_dirver/chromedriver.exe
-
-### Run the project:-
-    Select the test class in com.walmart.testcase. There are 2 classes avaiable
-        NewTestPass.java(Expect to pass all 5 test)
-    Run as TestNG
- 
-
-
-**Test Scenario** :
+Test Flow :
     1. Open Web Browser
     2. Open www.walmart.com
     3. Login using existing account,
@@ -64,7 +51,6 @@ Assumptions:
     6: Add the selected item to Cart
     7. Validate that item added is present in the cart by checking Product-id 
        and if it's the only one item in the cart
-
 
 ### Other tests that can be automated for the problem scenario:
     1. Access the website with no internet connection
@@ -76,7 +62,6 @@ Assumptions:
     7. Test on various browsers
     8. Run the test in parallel on different platform
 
-
 ### Trade-offs
     1.	Simplify the Driver and webElement call
     2.  rebuild the code style to improve the reusability
@@ -87,5 +72,5 @@ Assumptions:
 
 ### Why it is missing
     Time limitation 
-	Lack of device(iOS and Android device)
+    Lack of device(iOS and Android device)
 
