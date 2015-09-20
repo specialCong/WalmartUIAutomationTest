@@ -1,5 +1,3 @@
-# UI Automation Tests for Walmart
-
 ### Installation Requirement:
 Before running the code you need to set up the following tools on your machine
 - Java 8
