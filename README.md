@@ -12,8 +12,7 @@ Before running the code you need to set up the following tools on your machine
 -	Click Finish
 -	You should see the project in your workspace now. 
 -	Copy the folder chrome_driver(with two dirvers, one for Mac, one for windows) to root path of disk where your IDE located.    
-    -e.g. for Windows, "E/Program Files/Eclipse", "E/chrome_dirver"
-    -e.g. for Mac, move folder to root path of disk.
+    -e.g. for Windows, "E/Program Files/Eclipse", "E/chrome_dirver"; For Mac, move folder to root path of disk.
 -	Modify the path_to_driver in WebPageTestMethod.java to :/chrome_dirver/chromedriver.exe
 
 ### Run the project:
