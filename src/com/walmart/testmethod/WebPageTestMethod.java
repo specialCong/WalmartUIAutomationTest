@@ -71,7 +71,7 @@ public class WebPageTestMethod {
 		// Set up the path of web driver
 		System.setProperty("webdriver.chrome.driver", PATH_TO_DRIVER);
 		_driver = new ChromeDriver();
-		_wait = new WebDriverWait(_driver, 15);
+		_wait = new WebDriverWait(_driver, 30);
 		_elemHelper = new WebElementHelper(_driver, null);
 		//test = new testAction();
 		// direct to www.walmart.com
